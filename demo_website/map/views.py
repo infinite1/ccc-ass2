@@ -36,14 +36,14 @@ class FoliumView(TemplateView):
 
         figure = folium.Figure()
         m = folium.Map(
-            location=[-27.81, 164.96],
+            location=[-27.81, 134.96],
             zoom_start=4,
         )
         
         m.add_to(figure)
     
         folium.Choropleth(
-            geo_data=aus_geo,
+            geo_data=aus,
             name='Unemployment in State',
             data=aus_data,
             columns=['STATE_CODE','Job Loss Rate'],
