@@ -3,13 +3,7 @@ availability_zone: melbourne-qh2-uom
 
 # Volume
 volumes:
-  - vol_name: instance-01-vol
-    vol_size: 10
-  - vol_name: instance-02-vol
-    vol_size: 10
-  - vol_name: instance-03-vol
-    vol_size: 10
-  - vol_name: instance-04-vol
+  - vol_name: test-instance-vol
     vol_size: 10
 
 
@@ -30,15 +24,9 @@ security_groups:
 
 # Instance
 instances:
-  - name: instance-01
-    volumes: ['instance-01-vol']
-  - name: instance-02
-    volumes: ['instance-02-vol']
-  - name: instance-03
-    volumes: ['instance-03-vol']
-  - name: instance-04
-    volumes: ['instance-04-vol']
+  - name: test-instance
+    volumes: ['test-instance-vol']
 
 instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166
 instance_key_name: xinyu-key
-instance_flavor: uom.mse.1c4g
+instance_flavor: uom.mse.2c9g
