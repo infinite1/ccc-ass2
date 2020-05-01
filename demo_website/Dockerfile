@@ -6,12 +6,6 @@ FROM python:3
 COPY . /app
 WORKDIR /app
 
-
-# set default environment variables
-ENV PYTHONUNBUFFERED 1
-ENV LANG C.UTF-8
-ENV DEBIAN_FRONTEND=noninteractive 
-
 RUN pip install -r requirements.txt
 
 EXPOSE 8888
