@@ -1,0 +1,4 @@
+Django
+django-leaflet
+geopandas
+folium
