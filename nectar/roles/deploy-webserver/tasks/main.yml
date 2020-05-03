@@ -15,6 +15,7 @@
     no_proxy: localhost,127.0.0.1,localaddress,172.16.0.0/12,.melbourne.rc.nectar.org.au,.storage.u nimelb.edu.au,.cloud.unimelb.edu.au
   git:
     repo: https://github.com/infinite1/ccc-ass2.git
+    version: babala
     dest: /home/ubuntu/code
     
 # proxy settings for docker
