@@ -3,8 +3,8 @@ availability_zone: melbourne-qh2-uom
 
 # Volume
 volumes:
-  - vol_name: test-instance-vol
-    vol_size: 20
+  - vol_name: test-babala-vol
+    vol_size: 10
 
 
 # Security group
@@ -24,8 +24,8 @@ security_groups:
 
 # Instance
 instances:
-  - name: test-instance
-    volumes: ['test-instance-vol']
+  - name: babala
+    volumes: ['test-babala-vol']
 
 instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166
 instance_key_name: xinyu-key
