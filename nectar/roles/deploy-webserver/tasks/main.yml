@@ -9,6 +9,7 @@
   git:
     repo: https://github.com/infinite1/ccc-ass2.git
     dest: /home/ubuntu/code
+    version: xinyu
     
 # proxy settings for docker
 - name: mkdir /etc/systemd/system/docker.service.d
