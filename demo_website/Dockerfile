@@ -8,5 +8,5 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8888
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8888"]
+EXPOSE 70
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:70"]
