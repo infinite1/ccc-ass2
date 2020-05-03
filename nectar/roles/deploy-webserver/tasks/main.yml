@@ -1,4 +1,15 @@
 ---
+
+- name: delete /home/ubuntu/code if exists
+  file:
+    path: /home/ubuntu/code
+    state: absent
+
+- name: git clone project files
+  git:
+    repo: https://github.com/infinite1/ccc-ass2.git
+    dest: /home/ubuntu/code
+    
 # proxy settings for docker
 - name: mkdir /etc/systemd/system/docker.service.d
   file:
@@ -47,26 +58,20 @@
   shell: systemctl restart docker 
   become: yes
 
-# - name: delete /home/ubuntu/code if exists
-#   file:
-#     path: /home/ubuntu/code
-#     state: absent
-
-# - name: git clone project files
-#   git:
-#     repo: https://github.com/infinite1/ccc-ass2.git
-#     dest: /home/ubuntu/code
-
-# - name: add host to known hosts
-#   become: yes
-#   lineinfile:
-#     path: /home/ubuntu/code/demo_website/demo_website/settings.py
-#     regexp: '^ALLOWED_HOSTS'
-#     line: ALLOWED_HOSTS = ["{{ ansible_default_ipv4.address }}"]
+- name: add host to known hosts
+  become: yes
+  lineinfile:
+    path: /home/ubuntu/code/demo_website/demo_website/settings.py
+    regexp: '^ALLOWED_HOSTS'
+    line: ALLOWED_HOSTS = ["{{ ansible_default_ipv4.address }}"]
 
 - debug:
     msg: "IP address is {{ ansible_default_ipv4.address }}"
 
-
+- name: run web server
+  become: yes
+  docker_compose:
+        project_src: /home/ubuntu/code/demo_website
+        build: yes
 
   

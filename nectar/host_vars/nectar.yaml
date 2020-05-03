@@ -4,7 +4,7 @@ availability_zone: melbourne-qh2-uom
 # Volume
 volumes:
   - vol_name: test-instance-vol
-    vol_size: 10
+    vol_size: 20
 
 
 # Security group
