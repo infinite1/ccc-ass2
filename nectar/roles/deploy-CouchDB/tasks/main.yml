@@ -1,0 +1,6 @@
+---
+
+- name: delete /home/ubuntu/code if exists
+  file:
+    path: /home/ubuntu/code
+    state: absent
