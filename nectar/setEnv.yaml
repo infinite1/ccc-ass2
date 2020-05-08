@@ -3,3 +3,4 @@
   roles:
     - role: set-environment
     - role: deploy-webserver
+    # - role: deploy-CouchDB
