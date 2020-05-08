@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 echo "== Set variables =="
-declare -a nodes=(172.20.0.2 172.20.0.3)
+declare -a nodes=(172.26.132.3 172.26.132.139)
 declare -a ports=(5984 15984)
-export master_node=172.20.0.2
+export master_node=172.26.132.3
 export master_port=5984
 export size=${#nodes[@]}
 export user=user

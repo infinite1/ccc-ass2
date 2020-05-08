@@ -1,6 +1,13 @@
 ---
-
 - name: delete /home/ubuntu/code if exists
   file:
     path: /home/ubuntu/code
     state: absent
+
+- name: git clone project files
+  git:
+    repo: https://github.com/infinite1/ccc-ass2.git
+    version: babala
+    dest: /home/ubuntu/code
+
+    

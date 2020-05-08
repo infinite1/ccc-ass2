@@ -10,7 +10,7 @@ services:
       - "9100-9200:9100-9200"
     links:
       - couch_slave1
-      - couch_slave2
+      # - couch_slave2
     volumes:
       - ./data/master/data:/opt/couchdb/data
     environment:
@@ -38,21 +38,21 @@ services:
       couchdb_nw:
         ipv4_address: 172.20.0.3
 
-  couch_slave2:
-    image: "ibmcom/couchdb3:3.0.0"
-    restart: always
-    ports:
-      - "25984:5984"
-    volumes:
-      - ./data/slave2/data:/opt/couchdb/data
-    environment:
-      - COUCHDB_USER=user
-      - COUCHDB_PASSWORD=pass
-      - NODENAME=172.20.0.4
-    container_name: couch_slave2
-    networks:
-      couchdb_nw:
-        ipv4_address: 172.20.0.4
+  # couch_slave2:
+  #   image: "ibmcom/couchdb3:3.0.0"
+  #   restart: always
+  #   ports:
+  #     - "25984:5984"
+  #   volumes:
+  #     - ./data/slave2/data:/opt/couchdb/data
+  #   environment:
+  #     - COUCHDB_USER=user
+  #     - COUCHDB_PASSWORD=pass
+  #     - NODENAME=172.20.0.4
+  #   container_name: couch_slave2
+  #   networks:
+  #     couchdb_nw:
+  #       ipv4_address: 172.20.0.4
 
 networks:
   couchdb_nw:
