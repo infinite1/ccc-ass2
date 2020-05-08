@@ -6,7 +6,6 @@ volumes:
   - vol_name: test-babala-vol
     vol_size: 10
 
-
 # Security group
 security_groups:
   - name: ssh
@@ -21,6 +20,12 @@ security_groups:
     port_range_min: 80
     port_range_max: 80
     remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb
+    description: "CouchDB"
+    protocol: tcp
+    port_range_min: 5984
+    port_range_max: 5984
+    remote_ip_prefix: 0.0.0.0/0  
 
 # Instance
 instances:

@@ -13,7 +13,7 @@ ENV no_proxy localhost,127.0.0.1,localaddress,172.16.0.0/12,.melbourne.rc.nectar
 COPY . /app
 WORKDIR /app
 
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 70
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:70"]
