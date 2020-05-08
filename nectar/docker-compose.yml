@@ -10,7 +10,7 @@ services:
       - "9100-9200:9100-9200"
     links:
       - couch_slave1
-      - couch_slave2
+      # - couch_slave2
     volumes:
       - ./data/master/data:/opt/couchdb/data
     environment:
