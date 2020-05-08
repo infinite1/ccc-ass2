@@ -3,7 +3,9 @@ availability_zone: melbourne-qh2-uom
 
 # Volume
 volumes:
-  - vol_name: xinyu-instance-vol
+  - vol_name: instance1-vol
+    vol_size: 20
+  - vol_name: instance2-vol
     vol_size: 20
 
 
@@ -21,11 +23,19 @@ security_groups:
     port_range_min: 80
     port_range_max: 80
     remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb
+    description: "CouchDB"
+    protocol: tcp
+    port_range_min: 5984
+    port_range_max: 5984
+    remote_ip_prefix: 0.0.0.0/0  
 
 # Instance
 instances:
-  - name: xinyu-instance
-    volumes: ['xinyu-instance-vol']
+  - name: instance1
+    volumes: ['instance1-vol']
+  - name: instance2
+    volumes: ['instance2-vol']
 
 instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166
 instance_key_name: xinyu-key
