@@ -18,6 +18,13 @@ def LeafletView(request):
 
 class FoliumView(TemplateView):
     template_name = "map/folium.html"
+    def get_tweets(self):
+        couchdb_url='http://admin:admin@127.0.0.1:5984/'
+        db=couchdb.Server(couchdb_url)
+        tweet_db=db['tweets']
+        mango={"selector": {"coordinates": {"$gt": [-1000,-1000]}}}
+        results = tweet_db.find(mango)
+        return results
 
     def get_context_data(self, **kwargs):
         #figure = folium.Figure()
@@ -39,6 +46,15 @@ class FoliumView(TemplateView):
             location=[-27.81, 134.96],
             zoom_start=4,
         )
+        #add streeming tweets into map
+        tweets=self.get_tweets()
+        if tweets:
+            for tweet in tweets:
+                folium.Marker(
+                    location=[tweet['coordinates']['coordinates'][1],tweet['coordinates']['coordinates'][0]],
+                    popup=tweet['text'],
+                    icon=folium.Icon(icon='cloud')
+                ).add_to(m)
         
         m.add_to(figure)
     
