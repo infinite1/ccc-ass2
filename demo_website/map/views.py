@@ -6,6 +6,7 @@ import folium
 import geopandas as geopd
 import pandas as pd
 import json
+import couchdb
 from django.views.generic import TemplateView
 def DefaultView(request):
     tk='pk.eyJ1Ijoiamx1bzEiLCJhIjoiY2s5ZTJib2UxMDA0dTNtdGozbjI1amxoaiJ9.SGvgK0GJLR38F7T8ihRxHw'
