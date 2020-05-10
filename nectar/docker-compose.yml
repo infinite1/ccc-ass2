@@ -20,7 +20,7 @@ services:
     container_name: couch_master
     networks:
       couchdb_nw:
-        ipv4_address: 172.26.132.3
+        ipv4_address: 172.26.131.10
 
   couch_slave1:
     image: "ibmcom/couchdb3:3.0.0"
@@ -36,7 +36,7 @@ services:
     container_name: couch_slave1
     networks:
       couchdb_nw:
-        ipv4_address: 172.26.132.139
+        ipv4_address: 172.26.130.42
 
   # couch_slave2:
   #   image: "ibmcom/couchdb3:3.0.0"
@@ -59,4 +59,4 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 172.26.0.0/16
