@@ -8,7 +8,7 @@ export user=user
 export pass=pass
 
 echo "== Start the containers =="
-docker-compose up -d
+sudo docker-compose up -d
 sleep 10
 
 echo "== Enable cluster setup =="
