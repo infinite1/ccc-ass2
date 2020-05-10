@@ -17,3 +17,9 @@
     version: babala
     dest: /home/ubuntu/code
 
+- name: set proxy
+  become: yes
+  shell: |
+    sudo echo 'http_proxy="http://wwwproxy.unimelb.edu.au:8000"
+    https_proxy="http://wwwproxy.unimelb.edu.au:8000"
+    ftp_proxy="http://wwwproxy.unimelb.edu.au:8000"' >> /etc/environment
