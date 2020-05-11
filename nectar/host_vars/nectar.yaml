@@ -20,8 +20,8 @@ security_groups:
   - name: http
     description: "HTTP"
     protocol: tcp
-    port_range_min: 50
-    port_range_max: 100
+    port_range_min: 80
+    port_range_max: 80
     remote_ip_prefix: 0.0.0.0/0
   - name: couchdb
     description: "CouchDB"
@@ -34,6 +34,12 @@ security_groups:
     protocol: tcp
     port_range_min: 2377
     port_range_max: 2377
+    remote_ip_prefix: 0.0.0.0/0
+  - name: docker-swarm-visualizer
+    description: "docker-swarm-visualizer"
+    protocol: tcp
+    port_range_min: 8080
+    port_range_max: 8080
     remote_ip_prefix: 0.0.0.0/0
 
 # Instance
