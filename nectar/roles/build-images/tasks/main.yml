@@ -13,3 +13,4 @@
     build: 
       path: /home/ubuntu/code/demo_website
     source: build
+    nocache: yes
