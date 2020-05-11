@@ -1,14 +1,4 @@
 ---
-- name: add host to known hosts
-  become: yes
-  lineinfile:
-    path: /home/ubuntu/code/demo_website/demo_website/settings.py
-    regexp: '^ALLOWED_HOSTS'
-    line: ALLOWED_HOSTS = ["{{ ansible_default_ipv4.address }}"]
-
-- debug:
-    msg: "IP address is {{ ansible_default_ipv4.address }}"
-
 - name: run web server
   become: yes
   docker_compose:
