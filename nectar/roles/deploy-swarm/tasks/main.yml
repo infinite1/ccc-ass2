@@ -1,4 +1,8 @@
+---
 - name: Init a new swarm with default parameters
+  become: yes
   docker_swarm:
     state: present
+    advertise_addr: "{{ ansible_default_ipv4.address }}"
+  register: swarm_info
 

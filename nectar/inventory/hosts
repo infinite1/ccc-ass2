@@ -1,9 +1,9 @@
 [all:children]
-manager
+leader
 worker
 
-[manager]
-172.26.134.85
+[leader]
+node1
 
 [worker]
-172.26.132.129
+node2

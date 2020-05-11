@@ -1,0 +1,15 @@
+---
+- name: init docker swarm
+  hosts: leader
+  roles:
+    - role: deploy-swarm
+
+- name: Add worker
+  hosts: worker
+  roles:
+    - role: add-worker
+  
+- name: deploy services
+  hosts: leader
+  roles:
+    - role: deploy-service
