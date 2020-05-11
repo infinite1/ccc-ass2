@@ -13,3 +13,11 @@
       - source: /var/run/docker.sock
         target: /var/run/docker.sock
 
+- name: Start web service
+  become: yes
+  docker_swarm_service:
+    name: web-app
+    image: infinite12/webservice
+    publish: 
+      - published_port: 50
+        target_port: 70

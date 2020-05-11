@@ -12,4 +12,5 @@
 - name: deploy services
   hosts: leader
   roles:
+    - role: build-images
     - role: deploy-service
