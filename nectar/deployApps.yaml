@@ -1,24 +1,24 @@
 ---
-# - name: init docker swarm
-#   hosts: leader
-#   roles:
-#     - role: deploy-swarm
+- name: init docker swarm
+  hosts: leader
+  roles:
+    - role: deploy-swarm
 
-# - name: Add worker
-#   hosts: worker
-#   roles:
-#     - role: add-worker
+- name: Add worker
+  hosts: worker
+  roles:
+    - role: add-worker
   
-# - name: deploy web services
-#   hosts: leader
-#   roles:
-#     - role: build-images
-#     - role: deploy-web
+- name: deploy web services
+  hosts: leader
+  roles:
+    - role: build-images
+    - role: deploy-web
 
-# - name: deploy couchdb
-#   hosts: all
-#   roles:
-#     - role: deploy-couchdb
+- name: deploy couchdb
+  hosts: all
+  roles:
+    - role: deploy-couchdb
 
 - name: set up couchDB cluster
   hosts: leader
