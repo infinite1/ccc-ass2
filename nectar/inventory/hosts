@@ -1,2 +1,12 @@
-[all]
+[all:children]
+leader
+worker
 
+[leader]
+node1
+
+[worker]
+node2
+
+[nonLeader]
+node2

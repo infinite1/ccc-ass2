@@ -1,0 +1,8 @@
+---
+- name: Add worker nodes
+  become: yes
+  docker_swarm:
+    state: join
+    advertise_addr: "{{ hostvars['node1']['ansible_default_ipv4']['address'] }}"
+    join_token: "{{ hostvars['node1']['swarm_info']['swarm_facts']['JoinTokens']['Worker'] }}"
+    remote_addrs: ["{{ hostvars['node1']['ansible_default_ipv4']['address'] }}"]
