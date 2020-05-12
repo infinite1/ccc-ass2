@@ -15,5 +15,5 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 70
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:70"]
+EXPOSE 80
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:80"]

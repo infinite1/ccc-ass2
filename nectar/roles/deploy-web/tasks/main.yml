@@ -1,0 +1,37 @@
+---
+
+# - name: Remove service
+#   become: yes
+#   docker_swarm_service:
+#     name: viz
+#     state: absent
+
+# - name: Remove service
+#   become: yes
+#   docker_swarm_service:
+#     name: web-app
+#     state: absent
+
+# image is from https://github.com/dockersamples/docker-swarm-visualizer
+- name: Set docker swarm visualizer
+  become: yes
+  docker_swarm_service:
+    name: viz
+    image: dockersamples/visualizer
+    publish: 
+      - published_port: 8080
+        target_port: 8080
+    constraints: node.role==manager
+    mounts:
+      - source: /var/run/docker.sock
+        target: /var/run/docker.sock
+
+- name: Start web service
+  become: yes
+  docker_swarm_service:
+    name: web-app
+    image: infinite12/webservice
+    publish: 
+      - published_port: 80
+        target_port: 80
+    replicas: 2

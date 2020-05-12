@@ -1,0 +1,16 @@
+---
+- name: Log into DockerHub
+  become: yes
+  docker_login:
+    username: infinite12
+    password: 876fff6f-d069-4364-a7af-b678adbdc9f4
+
+- name: build and upload images to docker-hub
+  become: yes
+  docker_image:
+    name: infinite12/webservice
+    push: yes
+    build: 
+      path: /home/ubuntu/code/demo_website
+    source: build
+    nocache: yes

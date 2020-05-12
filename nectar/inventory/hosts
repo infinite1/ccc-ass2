@@ -1,4 +1,12 @@
-[all]
-172.26.131.10
-172.26.130.42
+[all:children]
+leader
+worker
 
+[leader]
+node1
+
+[worker]
+node2
+
+[nonLeader]
+node2

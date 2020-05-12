@@ -3,9 +3,9 @@ availability_zone: melbourne-qh2-uom
 
 # Volume
 volumes:
-  - vol_name: test-babala1-vol
+  - vol_name: xinyu-instance1-vol
     vol_size: 10
-  - vol_name: test-babala2-vol
+  - vol_name: xinyu-instance2-vol
     vol_size: 10
 
 
@@ -23,19 +23,43 @@ security_groups:
     port_range_min: 80
     port_range_max: 80
     remote_ip_prefix: 0.0.0.0/0
-  - name: couchdb
-    description: "CouchDB"
+  - name: couchdb1
+    description: "CouchDB1"
     protocol: tcp
     port_range_min: 5984
     port_range_max: 5984
-    remote_ip_prefix: 0.0.0.0/0  
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb2
+    description: "CouchDB2"
+    protocol: tcp
+    port_range_min: 4369
+    port_range_max: 4369
+    remote_ip_prefix: 0.0.0.0/0
+  - name: couchdb3
+    description: "CouchDB3"
+    protocol: tcp
+    port_range_min: 9100
+    port_range_max: 9200
+    remote_ip_prefix: 0.0.0.0/0   
+  - name: docker-swarm
+    description: "docker-swarm"
+    protocol: tcp
+    port_range_min: 2377
+    port_range_max: 2377
+    remote_ip_prefix: 0.0.0.0/0
+  - name: docker-swarm-visualizer
+    description: "docker-swarm-visualizer"
+    protocol: tcp
+    port_range_min: 8080
+    port_range_max: 8080
+    remote_ip_prefix: 0.0.0.0/0
 
 # Instance
 instances:
-  - name: master
-    volumes: ['test-babala1-vol']
-  - name: slave
-    volumes: ['test-babala2-vol']
+  - name: xinyu-instance1
+    volumes: ['xinyu-instance1-vol']
+  - name: xinyu-instance2
+    volumes: ['xinyu-instance2-vol']
 
 instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166
 instance_key_name: key-test
