@@ -1,0 +1,11 @@
+---
+- name: create docker containers
+  become: yes
+  shell: |
+      docker run -d --name couchDB -v /home/ubuntu/couchdb/data:/opt/couchdb/data -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -e NODENAME="{{ ansible_default_ipv4.address }}" -p 5984:5984 -p 4369:4369 -p 9100-9200:9100-9200 couchdb 
+
+- name: enable cluster
+  become: yes
+  shell: |
+      curl -X POST -H "Content-Type: application/json" http://admin:password@127.0.0.1:5984/_cluster_setup -d '{"action": "enable_cluster", "bind_address":"0.0.0.0", "username": "admin", "password":"password", "node_count":"{{ groups['all'] | length }}"}'
+

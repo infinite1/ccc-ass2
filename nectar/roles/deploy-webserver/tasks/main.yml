@@ -1,8 +1,0 @@
----
-- name: run web server
-  become: yes
-  docker_compose:
-        project_src: /home/ubuntu/code/demo_website
-        build: yes
-
-  
