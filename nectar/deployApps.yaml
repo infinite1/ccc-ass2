@@ -8,17 +8,17 @@
   hosts: worker
   roles:
     - role: add-worker
-  
-- name: deploy web services
-  hosts: leader
-  roles:
-    - role: build-images
-    - role: deploy-web
 
 - name: deploy couchdb
   hosts: all
   roles:
     - role: deploy-couchdb
+
+- name: deploy web and tweet harvester
+  hosts: leader
+  roles:
+    - role: build-images
+    - role: deploy-web
 
 - name: set up couchDB cluster
   hosts: leader
