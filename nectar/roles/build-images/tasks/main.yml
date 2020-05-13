@@ -1,4 +1,16 @@
 ---
+- name: Remove service
+  become: yes
+  docker_swarm_service:
+    name: viz
+    state: absent
+
+- name: Remove service
+  become: yes
+  docker_swarm_service:
+    name: web-app
+    state: absent
+    
 - name: Log into DockerHub
   become: yes
   docker_login:
@@ -13,4 +25,3 @@
     build: 
       path: /home/ubuntu/code/demo_website
     source: build
-    nocache: yes

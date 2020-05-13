@@ -1,17 +1,4 @@
 ---
-
-# - name: Remove service
-#   become: yes
-#   docker_swarm_service:
-#     name: viz
-#     state: absent
-
-# - name: Remove service
-#   become: yes
-#   docker_swarm_service:
-#     name: web-app
-#     state: absent
-
 # image is from https://github.com/dockersamples/docker-swarm-visualizer
 - name: Set docker swarm visualizer
   become: yes
@@ -31,7 +18,6 @@
   docker_swarm_service:
     name: web-app
     image: infinite12/webservice
-    publish: 
-      - published_port: 80
-        target_port: 80
+    networks:
+      - host
     replicas: 2
