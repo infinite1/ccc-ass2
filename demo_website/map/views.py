@@ -20,7 +20,7 @@ def LeafletView(request):
 class FoliumView(TemplateView):
     template_name = "map/folium.html"
     def get_tweets(self):
-        couchdb_url='http://admin:admin@127.0.0.1:5984/'
+        couchdb_url='http://admin:password@127.0.0.1:5984/'
         db=couchdb.Server(couchdb_url)
         tweet_db=db['tweets']
         mango={"selector": {"coordinates": {"$gt": [-1000,-1000]}}}
