@@ -36,14 +36,14 @@ class SentimentAnalyser():
 class CouchDB():
 
     def __init__(self):
-        couchdb_url='http://admin:password@127.0.0.1:5984/'
+        couchdb_url='http://admin:admin@127.0.0.1:5984/'
         couch = couchdb.Server(couchdb_url)
         # couch = couchdb.Server('http://127.0.0.1:5984/')
         # couch.resource.credentials = ("camizous", "camizous1109")
-        if "tweet_raw" in couch:
-            self.db = couch['tweet_harvested']
+        if "tweets" in couch:
+            self.db = couch['tweets']
         else:
-            self.db = couch.create('tweet_harvested')
+            self.db = couch.create('tweets')
 
     def addDoc(self, data): 
         tweet = json.loads(data)
@@ -120,7 +120,6 @@ class TwitterListener(StreamListener):
 
  
 if __name__ == '__main__':
- 
     twitter_streamer = TwitterStreamer()
     twitter_streamer.stream_tweets()
 

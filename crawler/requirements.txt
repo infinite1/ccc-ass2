@@ -1,0 +1,4 @@
+tweepy
+couchdb
+tweet-preprocessor
+textblob
