@@ -17,8 +17,13 @@ from textblob import TextBlob
 class TwitterAuthenticator():
 
     def authenticate_twitter_app(self):
-        auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
-        auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
+        key = twitter_credentials.keys["ip"]
+        CONSUMER_KEY = key["CONSUMER_KEY"]
+        CONSUMER_SECRET = key["CONSUMER_SECRET"]
+        ACCESS_TOKEN = key["ACCESS_TOKEN"]
+        ACCESS_TOKEN_SECRET = key ["ACCESS_TOKEN_SECRET"]
+        auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+        auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
         return auth
 
 class SentimentAnalyser():
