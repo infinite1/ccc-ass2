@@ -127,12 +127,3 @@ class TwitterListener(StreamListener):
 if __name__ == '__main__':
     twitter_streamer = TwitterStreamer()
     twitter_streamer.stream_tweets()
-
-    
-
-
-    
-    
-    
-
-    
