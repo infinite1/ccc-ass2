@@ -23,7 +23,7 @@
   hosts: all
   roles:
     - role: set-environment
-    - role: deploy-harvester
+    - role: deploy-harvesters
 
 # - name: deploy web and tweet harvester
 #   hosts: leader

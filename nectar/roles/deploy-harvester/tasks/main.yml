@@ -3,7 +3,7 @@
   become: yes
   lineinfile:
     path: /home/ubuntu/code/crawler/harvester_server.py
-    regexp: '^        key = 'position of change key''
+    regexp: '^        key = twitter_credentials.keys\["ip"\]'
     line: '        key = twitter_credentials.keys["{{ ansible_default_ipv4.address }}"]'
 
 - name: Change IP of couchDB in code
