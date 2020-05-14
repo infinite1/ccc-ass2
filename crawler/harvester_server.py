@@ -17,7 +17,7 @@ from textblob import TextBlob
 class TwitterAuthenticator():
 
     def authenticate_twitter_app(self):
-        key = twitter_credentials.keys["ip"]
+        key = 'position of change key'
         CONSUMER_KEY = key["CONSUMER_KEY"]
         CONSUMER_SECRET = key["CONSUMER_SECRET"]
         ACCESS_TOKEN = key["ACCESS_TOKEN"]
