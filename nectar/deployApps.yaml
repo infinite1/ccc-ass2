@@ -22,6 +22,7 @@
 - name: Deploy tweets harvester
   hosts: all
   roles:
+    - role: set-environment
     - role: deploy-harvester
 
 # - name: deploy web and tweet harvester
