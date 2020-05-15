@@ -8,14 +8,8 @@ import pandas as pd
 import json
 import couchdb
 from django.views.generic import TemplateView
-def DefaultView(request):
-    tk='pk.eyJ1Ijoiamx1bzEiLCJhIjoiY2s5ZTJib2UxMDA0dTNtdGozbjI1amxoaiJ9.SGvgK0GJLR38F7T8ihRxHw'
-    return render(request,'map/default.html',{'mapbox_access_token':tk})
-
-def LeafletView(request):
-    tk='pk.eyJ1Ijoiamx1bzEiLCJhIjoiY2s5ZTJib2UxMDA0dTNtdGozbjI1amxoaiJ9.SGvgK0GJLR38F7T8ihRxHw'
-    return render(request,'map/leaflet.html',{'mapbox_access_token':tk})
-
+def home_view(request):
+    return render(request,"map/home.html")
 
 class FoliumView(TemplateView):
     template_name = "map/folium.html"
