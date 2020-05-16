@@ -3,10 +3,14 @@ availability_zone: melbourne-qh2-uom
 
 # Volume
 volumes:
-  - vol_name: xinyu-instance1-vol
-    vol_size: 10
-  - vol_name: xinyu-instance2-vol
-    vol_size: 10
+  - vol_name: instance1-vol
+    vol_size: 30
+  - vol_name: instance2-vol
+    vol_size: 30
+  - vol_name: instance3-vol
+    vol_size: 30
+  - vol_name: instance4-vol
+    vol_size: 30
 
 
 # Security group
@@ -57,9 +61,13 @@ security_groups:
 # Instance
 instances:
   - name: xinyu-instance1
-    volumes: ['xinyu-instance1-vol']
+    volumes: ['instance1-vol']
   - name: xinyu-instance2
-    volumes: ['xinyu-instance2-vol']
+    volumes: ['instance2-vol']
+  - name: xinyu-instance3
+    volumes: ['instance3-vol']
+  - name: xinyu-instance4
+    volumes: ['instance4-vol']
 
 instance_image: 45225edb-66d8-4fd0-bf41-132a31a18166
 instance_key_name: xinyu-key

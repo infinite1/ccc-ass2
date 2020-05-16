@@ -41,7 +41,7 @@ class SentimentAnalyser():
 class CouchDB():
 
     def __init__(self):
-        couchdb_url="http://admin:admin@127.0.0.1:5984/"
+        couchdb_url="http://admin:password@127.0.0.1:5984/"
         couch = couchdb.Server(couchdb_url)
         # couch = couchdb.Server('http://127.0.0.1:5984/')
         # couch.resource.credentials = ("camizous", "camizous1109")

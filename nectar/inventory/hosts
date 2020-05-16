@@ -1,12 +1,19 @@
 [all:children]
 leader
+manager
 worker
 
 [leader]
 node1
 
-[worker]
+[manager]
 node2
+
+[worker]
+node3
+node4
 
 [nonLeader]
 node2
+node3
+node4
