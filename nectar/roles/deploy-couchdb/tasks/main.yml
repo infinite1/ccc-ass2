@@ -1,12 +1,9 @@
 ---
-# - name: remove existing couchdb container
-
-
-
-# - name: create couchdb containers
-#   become: yes
-#   shell: |
-#       docker run -d --name couchDB -v /home/ubuntu/couchdb/data:/opt/couchdb/data -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -e NODENAME="{{ ansible_default_ipv4.address }}" -p 5984:5984 -p 4369:4369 -p 9100-9200:9100-9200 couchdb 
+- name: remove container
+  become: yes
+  docker_container:
+    name: couchDB
+    state: absent
 
 - name: create couchdb containers
   become: yes

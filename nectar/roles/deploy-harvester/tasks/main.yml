@@ -1,4 +1,9 @@
 ---
+- name: Copy file with owner and permissions
+  copy:
+    src: /Users/xinyusun/Desktop/ccc-ass2/crawler/twitter_credentials.py
+    dest: /home/ubuntu/code/crawler/twitter_credentials.py
+
 - name: Change key
   become: yes
   lineinfile:
@@ -10,8 +15,14 @@
   become: yes
   lineinfile:
     path: /home/ubuntu/code/crawler/harvester_server.py
-    regexp: '^        couchdb_url="http://admin:admin@127.0.0.1:5984/"'
+    regexp: '^        couchdb_url="http://admin:password@127.0.0.1:5984/"'
     line: '        couchdb_url="http://admin:password@{{ ansible_default_ipv4.address }}:5984/"'
+
+- name: Remove image
+  become: yes
+  docker_image:
+    state: absent
+    name: harvester_image
 
 - name: Build image
   become: yes

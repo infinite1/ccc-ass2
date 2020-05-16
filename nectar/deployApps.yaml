@@ -7,12 +7,17 @@
 # - name: set up couchDB cluster
 #   hosts: leader
 #   roles:
-#     - role: cluster-setup  
+#     - role: cluster-setup
 
 # - name: init docker swarm
 #   hosts: leader
 #   roles:
 #     - role: deploy-swarm
+
+# - name: Add manager
+#   hosts: manager
+#   roles:
+#     - role: add-manager
 
 # - name: Add worker
 #   hosts: worker
@@ -22,10 +27,9 @@
 - name: Deploy tweets harvester
   hosts: all
   roles:
-    - role: set-environment
     - role: deploy-harvester
 
-# - name: deploy web and tweet harvester
+# - name: deploy web
 #   hosts: leader
 #   roles:
 #     - role: build-images

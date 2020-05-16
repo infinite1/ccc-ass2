@@ -1,4 +1,10 @@
 ---
+- name: Remove a swarm manager
+  become: yes
+  docker_swarm:
+    state: absent
+    force: true
+    
 - name: Init a new swarm with default parameters
   become: yes
   docker_swarm:

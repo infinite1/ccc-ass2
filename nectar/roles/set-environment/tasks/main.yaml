@@ -68,6 +68,12 @@
     install_recommends: no
     update_cache: yes
 
+- name: Install a list of python packages
+  become: yes
+  pip:
+    name: 
+     - docker-compose
+
 - name: delete /home/ubuntu/code if exists
   file:
     path: /home/ubuntu/code

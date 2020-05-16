@@ -11,3 +11,8 @@
   become: yes
   shell: |
     curl -X POST -H "Content-Type: application/json" http://admin:password@"{{ ansible_default_ipv4.address }}":5984/_cluster_setup -d '{"action": "finish_cluster"}'
+
+- name: add tweets database
+  become: yes
+  shell: |
+    curl -X PUT "http://admin:password@"{{ ansible_default_ipv4.address }}":5984/tweets?q=4&n=2"
