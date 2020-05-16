@@ -45,12 +45,14 @@ class FoliumView(TemplateView):
         tweets=self.get_tweets()
         if tweets:
             for tweet in tweets:
-                folium.Marker(
-                    location=[tweet['coordinates']['coordinates'][1],tweet['coordinates']['coordinates'][0]],
-                    popup=tweet['text'],
-                    icon=folium.Icon(icon='cloud')
-                ).add_to(m)
-        
+                try:
+                    folium.Marker(
+                        location=[tweet['coordinates'][1],tweet['coordinates'][0]],
+                        popup=tweet['text'],
+                        icon=folium.Icon(icon='cloud')
+                    ).add_to(m)
+                except:
+                    pass
         m.add_to(figure)
     
         folium.Choropleth(

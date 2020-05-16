@@ -19,6 +19,5 @@ from map.views import home_view
 urlpatterns = [
     path('',home_view,name="home"),
     path('map/', include('map.urls')),
-    path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
