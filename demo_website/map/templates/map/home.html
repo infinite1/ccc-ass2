@@ -1,2 +1,118 @@
-{% include 'map/nav.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Twitter Map</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="{%static 'map/js/jquery.min.js' %}"></script>
+		<script src="{%static 'map/js/skel.min.js' %}"></script>
+		<script src="{%static 'map/js/skel-layers.min.js'%}"></script>
+		<script src="{%static 'map/js/init.js' %}"></script>
+		
+        <link rel="stylesheet" type="text/css" href="{% static 'map/css/skel.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'map/css/style.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'map/css/style-xlarge.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'map/css/font-awesome.min.css' %}"/>
+	</head>
+	<body class="landing">
+
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="/">University Of Melbourne</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="/map">Map</a></li>
+						<li><a href="/graph">Graphs</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Banner -->
+			<section id="banner" >
+				<h2>Project of Cluster and Cloud Computing.</h2>
+				<p>Show streaming twitter data on interactive map.</p>
+				<ul class="actions">
+					<li>
+						<a href="/map" class="button big">Get into Map</a>
+					</li>
+				</ul>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper style1 special">
+				<div class="container">
+					<header class="major">
+						<h2>Tools for development</h2>
+						<p></p>
+					</header>
+					<div class="row 150%">
+						<div class="4u 12u$(medium)">
+							<section class="box">
+								<i class="icon big rounded color1 fa-cloud"></i>
+								<h3>Ansible and Container</h3>
+								<p>Auto deployment</p>
+							</section>
+						</div>
+						<div class="4u 12u$(medium)">
+							<section class="box">
+								<i class="icon big rounded color9 fa-desktop"></i>
+								<h3>CouchDB</h3>
+								<p>Big data storage and process</p>
+							</section>
+						</div>
+						<div class="4u$ 12u$(medium)">
+							<section class="box">
+								<i class="icon big rounded color6 fa-rocket"></i>
+								<h3>Django</h3>
+								<p>Web framework, retrive data from couchdb and display it on map</p>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style2 special">
+				<div class="container">
+					<header class="major">
+						<h2>Our Group</h2>
+						<p>Students from University of Melbourne</p>
+					</header>
+					<section class="profiles">
+						<div class="row">
+							<section class="3u 6u(medium) 12u$(xsmall) profile">
+								<img src="{% static 'map/image/profile_placeholder.gif' %}" alt="" />
+								<h4>Jie Luo</h4>
+								<p>Master of IT</p>
+							</section>
+							<section class="3u 6u$(medium) 12u$(xsmall) profile">
+								<img src="{% static 'map/image/profile_placeholder.gif' %}" alt="" />
+								<h4>Voluptatem dolores</h4>
+								<p>Ullam nihil repudi</p>
+							</section>
+							<section class="3u 6u(medium) 12u$(xsmall) profile">
+								<img src="{% static 'map/image/profile_placeholder.gif' %}" alt="" />
+								<h4>Doloremque quo</h4>
+								<p>Harum corrupti quia</p>
+							</section>
+							<section class="3u$ 6u$(medium) 12u$(xsmall) profile">
+								<img src="{% static 'map/image/profile_placeholder.gif' %}" alt="" />
+								<h4>Voluptatem dicta</h4>
+								<p>Et natus sapiente</p>
+							</section>
+						</div>
+					</section>
+	
+				</div>
+			</section>
+
+		
+
+		
+
+	</body>
+</html>
 
