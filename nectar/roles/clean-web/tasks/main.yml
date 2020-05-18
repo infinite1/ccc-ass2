@@ -1,0 +1,7 @@
+---
+- name: Remove image
+  become: yes
+  docker_image:
+    state: absent
+    name: infinite12/webservice
+    force: yes

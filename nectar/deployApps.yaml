@@ -24,13 +24,18 @@
 #   roles:
 #     - role: add-worker
 
-- name: Deploy tweets harvester
+# - name: Deploy tweets harvester
+#   hosts: all
+#   roles:
+#     - role: deploy-harvester
+
+- name: remove current web image
   hosts: all
   roles:
-    - role: deploy-harvester
+    - role: clean-web
 
-# - name: deploy web
-#   hosts: leader
-#   roles:
-#     - role: build-images
-#     - role: deploy-web
+- name: deploy web
+  hosts: leader
+  roles:
+    - role: build-images
+    - role: deploy-web

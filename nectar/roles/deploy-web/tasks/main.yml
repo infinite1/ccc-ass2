@@ -20,4 +20,4 @@
     image: infinite12/webservice
     networks:
       - host
-    replicas: 2
+    replicas: "{{ groups['all'] | length }}"
