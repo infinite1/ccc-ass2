@@ -42,17 +42,17 @@ class FoliumView(TemplateView):
             zoom_start=4,
         )
         #add streeming tweets into map
-        # tweets=self.get_tweets()
-        # if tweets:
-        #     for tweet in tweets:
-        #         try:
-        #             folium.Marker(
-        #                 location=[tweet['coordinates'][1],tweet['coordinates'][0]],
-        #                 popup=tweet['text'],
-        #                 icon=folium.Icon(icon='cloud')
-        #             ).add_to(m)
-        #         except:
-        #             pass
+        tweets=self.get_tweets()
+        if tweets:
+            for tweet in tweets:
+                try:
+                    folium.Marker(
+                        location=[tweet['coordinates'][1],tweet['coordinates'][0]],
+                        popup=tweet['text'],
+                        icon=folium.Icon(icon='cloud')
+                    ).add_to(m)
+                except:
+                    pass
         m.add_to(figure)
     
         folium.Choropleth(
