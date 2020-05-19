@@ -26,7 +26,7 @@ class FoliumView(TemplateView):
         
         url = 'https://raw.githubusercontent.com/infinite1/ccc-ass2/master/demo_website'
         aus_geo = f'{url}/australian-states.json'
-        aus_unemployment = f'{url}/aus_data.csv'
+        aus_unemployment = f'{url}/aus_job_data.csv'
         aus_data = pd.read_csv(aus_unemployment)
         aus=geopd.read_file(aus_geo)
         aus['STATE_CODE']=aus['STATE_CODE'].astype(int)
@@ -42,17 +42,17 @@ class FoliumView(TemplateView):
             zoom_start=4,
         )
         #add streeming tweets into map
-        tweets=self.get_tweets()
-        if tweets:
-            for tweet in tweets:
-                try:
-                    folium.Marker(
-                        location=[tweet['coordinates'][1],tweet['coordinates'][0]],
-                        popup=tweet['text'],
-                        icon=folium.Icon(icon='cloud')
-                    ).add_to(m)
-                except:
-                    pass
+        # tweets=self.get_tweets()
+        # if tweets:
+        #     for tweet in tweets:
+        #         try:
+        #             folium.Marker(
+        #                 location=[tweet['coordinates'][1],tweet['coordinates'][0]],
+        #                 popup=tweet['text'],
+        #                 icon=folium.Icon(icon='cloud')
+        #             ).add_to(m)
+        #         except:
+        #             pass
         m.add_to(figure)
     
         folium.Choropleth(
