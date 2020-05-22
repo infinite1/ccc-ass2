@@ -1,5 +1,6 @@
 *.pem
 .DS_Store
+*.json
 openrc.sh
 
 # Byte-compiled / optimized / DLL files

@@ -3,3 +3,4 @@ django-leaflet
 geopandas
 folium
 couchdb
+cloudant
