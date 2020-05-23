@@ -1,50 +1,50 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-from django.views import generic
+from django.shortcuts import  render
+from django.views.generic import TemplateView
 import folium
 from folium.plugins import BeautifyIcon
+from folium.plugins import MarkerCluster
 import geopandas as geopd
 import pandas as pd
 import json
 import couchdb
-from django.views.generic import TemplateView
+from cloudant.client import CouchDB
+from .module.data_collector import CouchClient
+from .module.data_collector import get_aus_geo
 def home_view(request):
-    return render(request,"map/home.html")
+    return render(request,"map/base.html")
 
 class FoliumView(TemplateView):
-    template_name = "map/folium.html"
-    def get_tweets(self):
-        couchdb_url='http://admin:password@127.0.0.1:5984/'
-        db=couchdb.Server(couchdb_url)
-        tweet_db=db['tweets']
-        mango={"selector": {"coordinates": {"$gt": [-1000,-1000]}}}
-        results = tweet_db.find(mango)
-        return results
+    template_name = "map/folium.html"   
+    def add_tweets_on_map(self,db_client):
+        # fg_positive=folium.FeatureGroup(name='Positive tweets', show=True)
+        # fg_negtive=folium.FeatureGroup(name='Negtive tweets', show=True)
+        positive_marker_cluster=MarkerCluster(name="Positive Tweets Cluster")
+        negtive_marker_cluster=MarkerCluster(name="Negtive Tweets Cluster")
+        # retrive tweets data
+        tweets_pos,tweets_neg=db_client.get_tweets()
+        for tweet in tweets_pos:
+            try:
 
-    def add_tweets_on_map(self):
-        fg_positive=folium.FeatureGroup(name='Positive tweets', show=False)
-        fg_negtive=folium.FeatureGroup(name='Negtive tweets', show=False)
-        # add streeming tweets into map
-        tweets=self.get_tweets()
-        if tweets:
-            for tweet in tweets:
-                try:
-                    if tweet['sentiment']["polarity"]>0:
-                        folium.Marker(
-                            location=[tweet['coordinates'][1],tweet['coordinates'][0]],
-                            popup=tweet['text'],
-                            icon=BeautifyIcon(icon='thumbs-up',background_color='#99CCFF',border_color='transparent')
-                        ).add_to(fg_positive)
-                    else:
-                        folium.Marker(
-                            location=[tweet['coordinates'][1],tweet['coordinates'][0]],
-                            popup=tweet['text'],
-                            icon=BeautifyIcon(icon='thumbs-down',background_color='#FF9999',border_color='transparent')
-                        ).add_to(fg_negtive)
-                except:
-                    pass
-        return fg_positive,fg_negtive
+                marker=folium.Marker(
+                                location=[tweet['coordinates'][1],tweet['coordinates'][0]],
+                                popup=tweet['text'],
+                                icon=BeautifyIcon(icon='thumbs-up',background_color='#99CCFF',border_color='transparent')
+                            )
+                positive_marker_cluster.add_child(marker)
+            except:
+                pass
+        for tweet in tweets_neg:
+            try:
+                marker=folium.Marker(
+                                location=[tweet['coordinates'][1],tweet['coordinates'][0]],
+                                popup=tweet['text'],
+                                icon=BeautifyIcon(icon='thumbs-down',background_color='#FF9999',border_color='transparent')
+                            )
+                negtive_marker_cluster.add_child(marker)
+            except:
+                pass
+        return positive_marker_cluster,negtive_marker_cluster
+        
     def interactive_map(self,data):
         style_function = lambda x: {'fillColor': '#ffffff', 
                             'color':'#000000', 
@@ -61,18 +61,16 @@ class FoliumView(TemplateView):
             highlight_function=highlight_function, 
             tooltip=folium.features.GeoJsonTooltip(
                 fields=['STATE_NAME','Job Loss Rate'],
-                aliases=['STATE: ','Unemployment Rate %: '],
+                aliases=['STATE: ','Total Negative Tweets: '],
                 style=("background-color: white; color: #333333; font-family: arial; font-size: 12px; padding: 10px;") 
             )
         )
         return NIL
     def get_context_data(self, **kwargs):
-        url = 'https://raw.githubusercontent.com/infinite1/ccc-ass2/master/demo_website'
-        aus_geo = f'{url}/australian-states.json'
-        aus_unemployment = f'{url}/aus_job_data.csv'
-        aus_data = pd.read_csv(aus_unemployment)
-        aus=geopd.read_file(aus_geo)
-        aus['STATE_CODE']=aus['STATE_CODE'].astype(int)
+        db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
+        db_client.connect_db()
+        aus_data=db_client.basemap_stat("view","myview","neg")
+        aus=get_aus_geo()
         aus=aus.merge(aus_data,on="STATE_CODE")
 
         
@@ -92,16 +90,18 @@ class FoliumView(TemplateView):
             fill_color='YlGn',
             fill_opacity=0.7,
             line_opacity=0.2,
-            legend_name='2018 Unemployment Rate (%)',
+            legend_name='Negtive Tweets Count ',
             smooth_factor=0
         ).add_to(m)
+        #interactive map
         NIL=self.interactive_map(aus)
         m.add_child(NIL)
         m.keep_in_front(NIL)
-        #add feature group in layer control
-        fg_positive,fg_negtive=self.add_tweets_on_map()
-        m.add_child(fg_positive)
-        m.add_child(fg_negtive)
+        #add cluster in layer control
+        positive_marker_cluster,negtive_marker_cluster=self.add_tweets_on_map(db_client)
+        m.add_child(positive_marker_cluster)
+        m.add_child(negtive_marker_cluster)
+        
         folium.LayerControl().add_to(m)
         
         figure.render()
