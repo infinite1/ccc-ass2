@@ -67,7 +67,7 @@ class FoliumView(TemplateView):
         )
         return NIL
     def get_context_data(self, **kwargs):
-        #db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
+        # db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
         db_client=CouchClient("admin","password",'http://127.0.0.1:5984','tweets')
         db_client.connect_db()
         aus_data=db_client.basemap_stat("view","myview","neg")

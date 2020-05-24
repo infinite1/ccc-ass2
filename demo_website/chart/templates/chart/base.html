@@ -31,18 +31,30 @@
 </div>
 <script>
 var ctx = document.getElementById('myChart');
-var tweets_count={{ tweets|safe }};
-var state={{ state|safe }};
+var tweets_count={{ tweets | safe }};
+var state={{ state | safe }};
+var unemployment_rate={{ unemployment_rate | safe }};
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'bar',     
     data: {
         labels: state,
         datasets: [{
-            label: '# of Votes',
+            label: 'Negative Tweets Number',
             data: tweets_count,
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            borderWidth: 1
+            borderWidth: 1,
+            order:2
+        },{
+            label: 'Unemployment Rate(%)',
+            data: unemployment_rate,
+            type: 'line',
+            order:1,
+            pointBackgroundColor:'rgba(75, 192, 192, 1)',
+            borderColor:'rgba(75, 192, 192, 1)',
+            borderDash:[10,5],
+            pointRadius:10,
+            fill:false
         }]
     },
     options: {
