@@ -1,0 +1,60 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha256-TQq84xX6vkwR0Qs1qH5ADkP+MvH0W+9E7TdHJsoIQiM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<div>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+    style="margin: 0px;border-radius: 0px;font-size: 20px;min-height:80px;">
+    
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" style="padding-left: 3.0rem;" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="padding-left: 3.0rem;" href="/map">Map</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="padding-left: 3.0rem;" href="/chart">Graph</a>
+        </li>
+        </ul>
+    </div>
+</nav> 
+</div>
+<div style="width: 50%;height: 600px;margin-top: 100px;margin: auto;">
+<canvas id="myChart" width="100" height="100" ></canvas>
+</div>
+<script>
+var ctx = document.getElementById('myChart');
+var tweets_count={{ tweets|safe }};
+var state={{ state|safe }};
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: state,
+        datasets: [{
+            label: '# of Votes',
+            data: tweets_count,
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});   
+</script>
