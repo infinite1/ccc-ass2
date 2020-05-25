@@ -27,14 +27,44 @@
 </nav> 
 </div>
 <div style="width: 50%;height: 600px;margin-top: 100px;margin: auto;">
-<canvas id="myChart" width="100" height="100" ></canvas>
+    <h2>Current Negative tweets number and 2018 Unemployment Rate of State</h2>
+    <canvas id="myChart1" width="100" height="100" ></canvas>
+    <br><br>
+    <h2>2018 Negative tweets number of Cities</h2>
+    <canvas id="myChart3" width="100" height="100" ></canvas>
+    <br><br>
+    <h2>2018 Health,Homeless and Unemployment Rate</h2>
+    <h5>（Bubble size is health risk rate）</h5>
+    <canvas id="myChart2" width="100" height="100" ></canvas>
 </div>
 <script>
-var ctx = document.getElementById('myChart');
+var ctx1 = document.getElementById('myChart1');
+var ctx2 = document.getElementById('myChart2');
+var ctx3 = document.getElementById('myChart3');
 var tweets_count={{ tweets | safe }};
 var state={{ state | safe }};
 var unemployment_rate={{ unemployment_rate | safe }};
-var myChart = new Chart(ctx, {
+var health={{ health | safe}};
+var homeless={{ homeless_count | safe}};
+var city_tweets={{city_tweets  | safe}}
+var i;
+var bubble_datasets_arr=[];
+var color_set=["#90EE90","#FFB6C1","#FFA07A","#87CEFA","#9370DB","#FFDEAD","#778899"]
+for (i=0;i<state.length;i++){
+    bubble_datasets_arr.push(
+        {
+            label:state[i],
+            data:[{
+                x:homeless[i],
+                y:unemployment_rate[i],
+                r:health[i]
+            }],
+            borderColor:color_set[i],
+            backgroundColor:color_set[i]
+        }
+    )
+}
+var myChart = new Chart(ctx1, {
     type: 'bar',     
     data: {
         labels: state,
@@ -63,10 +93,67 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: false
                 }
             }]
         }
     }
-});   
+}); 
+var myChart = new Chart(ctx2, {
+    type: 'bubble',     
+    data: {
+        datasets:bubble_datasets_arr
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                
+                scaleLabel:{
+                    labelString:"Unemployment rate(%)",
+                    display:true
+                },
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            xAxes:[{
+                display:true,
+                scaleLabel:{
+                    labelString:"Total Homeless People",
+                    display:true
+                },
+                ticks: {
+                    beginAtZero: false
+                }
+            }],
+        }
+    }
+});     
+var myChart = new Chart(ctx3, {
+    type: 'bar',     
+    data: {
+        labels: ['melbourne', 'brisbane', 'perth', 'adelaide', 'sydney'],
+        datasets: [{
+            label: '2018 Negative Tweets Number of Cities',
+            data: city_tweets,
+            backgroundColor: '#FFA07A',
+            borderColor: '#FFA07A',
+            borderWidth: 1,
+            order:2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: false
+                }
+            }]
+        }
+    }
+}); 
 </script>
