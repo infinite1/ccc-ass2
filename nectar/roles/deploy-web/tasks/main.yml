@@ -5,6 +5,7 @@
   docker_swarm_service:
     name: viz
     image: dockersamples/visualizer
+    replicas: 2
     publish: 
       - published_port: 8080
         target_port: 8080
