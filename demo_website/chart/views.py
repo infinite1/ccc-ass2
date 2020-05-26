@@ -5,9 +5,9 @@ import pandas as pd
 def chart_view(request):
     #get tweets count and state name
     db_client=CouchClient("admin","password",'http://127.0.0.1:5984','tweets')
-    #db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
+    # db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
     db_client.connect_db()
-    cur_neg_tweets=db_client.get_city_tweets_count("view","city","neg")
+    cur_neg_tweets=db_client.get_city_tweets_count("views","city","neg")
     # get job lass rate data
     url = 'https://raw.githubusercontent.com/infinite1/ccc-ass2/master/demo_website'
     unemployment_url = f'{url}/aus_job_data.csv'
