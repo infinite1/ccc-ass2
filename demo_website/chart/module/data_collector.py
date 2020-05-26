@@ -34,22 +34,24 @@ class CouchClient:
         docs_neg = self.db.get_query_result(selector_neg,raw_result=True, limit=1000)
         return docs_pos['docs'],docs_neg['docs']
     def get_city_tweets_count(self,doc_id,view_name,label):
-        
-        map_function='''
-            function (doc) {
-                var place=doc.place.full_name.split(",");
-                if (doc.sentiment.polarity>0){
-                    emit([place[0],"pos"], 1);
+        try:
+            map_function='''
+                function (doc) {
+                    var place=doc.place.full_name.split(",");
+                    if (doc.sentiment.polarity>0){
+                        emit([place[0],"pos"], 1);
+                    }
+                    if (doc.sentiment.polarity<0){
+                        emit([place[0],"neg"], 1);
+                    }
+                    
                 }
-                if (doc.sentiment.polarity<0){
-                    emit([place[0],"neg"], 1);
-                }
-                
-            }
-        '''
-        ddoc = DesignDocument(self.db, document_id=doc_id)
-        ddoc.add_view(view_name,map_function,reduce_func="_sum")
-        ddoc.save()
+            '''
+            ddoc = DesignDocument(self.db, document_id=doc_id)
+            ddoc.add_view(view_name,map_function,reduce_func="_sum")
+            ddoc.save()
+        except:
+            pass
         
         cities=['Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Sydney']
         result = self.db.get_view_result('_design/'+doc_id, view_name,group_level=2,raw_result=True)
