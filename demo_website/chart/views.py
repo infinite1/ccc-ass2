@@ -4,8 +4,8 @@ from .module.data_collector import CouchClient
 import pandas as pd
 def chart_view(request):
     #get tweets count and state name
-    # db_client=CouchClient("admin","password",'http://127.0.0.1:5984','tweets')
-    db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
+    db_client=CouchClient("admin","password",'http://127.0.0.1:5984','tweets')
+    #db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
     db_client.connect_db()
     cur_neg_tweets=db_client.get_city_tweets_count("view","city","neg")
     # get job lass rate data
