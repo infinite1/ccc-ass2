@@ -27,21 +27,21 @@
 </nav> 
 </div>
 <div style="width: 50%;height: 600px;margin-top: 100px;margin: auto;">
-    <h2>Current Negative tweets number and 2018 Unemployment Rate of State</h2>
+    <h2>2018 Negative tweets number and 2018 Unemployment Rate of Cities</h2>
     <canvas id="myChart1" width="100" height="100" ></canvas>
-    <br><br>
-    <h2>2018 Negative tweets number of Cities</h2>
-    <canvas id="myChart3" width="100" height="100" ></canvas>
     <br><br>
     <h2>2018 Health,Homeless and Unemployment Rate</h2>
     <h5>（Bubble size is health risk rate）</h5>
     <canvas id="myChart2" width="100" height="100" ></canvas>
+    <br><br>
+    <h2>2018 and 2020 Negative tweets number of Cities</h2>
+    <canvas id="myChart3" width="100" height="100" ></canvas>        
 </div>
 <script>
 var ctx1 = document.getElementById('myChart1');
 var ctx2 = document.getElementById('myChart2');
 var ctx3 = document.getElementById('myChart3');
-var tweets_count={{ tweets | safe }};
+var cur_neg_tweets={{ cur_neg_tweets | safe }};
 var state={{ state | safe }};
 var unemployment_rate={{ unemployment_rate | safe }};
 var health={{ health | safe}};
@@ -67,21 +67,22 @@ for (i=0;i<state.length;i++){
 var myChart = new Chart(ctx1, {
     type: 'bar',     
     data: {
-        labels: state,
+        labels: ['melbourne', 'brisbane', 'perth', 'adelaide', 'sydney'],
         datasets: [{
             label: 'Negative Tweets Number',
-            data: tweets_count,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            data: cur_neg_tweets,
+            backgroundColor: '#87CEFA',
+            borderColor: '#87CEFA',
             borderWidth: 1,
             order:2
+        
         },{
-            label: 'Unemployment Rate(%)',
+            label: '2018 Unemployment Rate(%)',
             data: unemployment_rate,
             type: 'line',
             order:1,
-            pointBackgroundColor:'rgba(75, 192, 192, 1)',
-            borderColor:'rgba(75, 192, 192, 1)',
+            pointBackgroundColor:'#FFB6C1',
+            borderColor:'#FFB6C1',
             borderDash:[10,5],
             pointRadius:10,
             fill:false
@@ -141,8 +142,16 @@ var myChart = new Chart(ctx3, {
             backgroundColor: '#FFA07A',
             borderColor: '#FFA07A',
             borderWidth: 1,
+            order:1
+        },{
+            label: '2020 Negative Tweets Number of Cities',
+            data: cur_neg_tweets,
+            backgroundColor: '#87CEFA',
+            borderColor: '#87CEFA',
+            borderWidth: 0.5,
             order:2
-        }]
+        }
+        ]
     },
     options: {
         responsive: true,
@@ -150,7 +159,7 @@ var myChart = new Chart(ctx3, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: false
+                    beginAtZero: true
                 }
             }]
         }

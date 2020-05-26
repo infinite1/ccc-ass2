@@ -4,15 +4,16 @@ from .module.data_collector import CouchClient
 import pandas as pd
 def chart_view(request):
     #get tweets count and state name
-    db_client=CouchClient("admin","password",'http://127.0.0.1:5984','tweets')
-    # db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
+    # db_client=CouchClient("admin","password",'http://127.0.0.1:5984','tweets')
+    db_client=CouchClient("admin","admin",'http://127.0.0.1:5984','tweet')
     db_client.connect_db()
-    state,tweets=db_client.get_state_tweets_count("view","myview","neg")
+    cur_neg_tweets=db_client.get_city_tweets_count("view","city","neg")
     # get job lass rate data
     url = 'https://raw.githubusercontent.com/infinite1/ccc-ass2/master/demo_website'
     unemployment_url = f'{url}/aus_job_data.csv'
     unemployment_data = pd.read_csv(unemployment_url)
     unemployment_rate = unemployment_data['Job Loss Rate'].tolist()
+    city_unemployment_rate=[unemployment_rate[1],unemployment_rate[2],unemployment_rate[4],unemployment_rate[3],unemployment_rate[0]]
     # get homeless data
     homeless_url = f'{url}/aus_homeless_data.csv'
     homeless_data = pd.read_csv(homeless_url)
@@ -30,10 +31,21 @@ def chart_view(request):
     city_url=f'{url}/aus_city_tweets.csv'
     city_data=pd.read_csv(city_url)
     city_tweets=city_data['Negative'].tolist()
-    context = {"state": state, "tweets": tweets,
-               "unemployment_rate": unemployment_rate,
+    #state
+    state=[
+            "New South Wales",
+            "Victoria",
+            "Queensland",
+            "South Australia",
+            "Western Australia",
+            "Tasmania",
+            "Northern Territory",
+        ]
+    context = {"cur_neg_tweets": cur_neg_tweets,
+               "unemployment_rate": city_unemployment_rate,
                "homeless_count":homeless_count,
                "health":health_rate,
-               "city_tweets":city_tweets}
+               "city_tweets":city_tweets,
+               "state":state}
     return render(request, "chart/base.html", context)
 
