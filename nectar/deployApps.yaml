@@ -1,33 +1,38 @@
 ---
-# - name: deploy couchdb
-#   hosts: all
-#   roles:
-#     - role: deploy-couchdb
+# Xinyu Sun 952469
+# Shiyu Dong 870480
+# Jie Luo 1122592
+# Yuxiang Xia 969367
+# Yixuan Tang 959698
+- name: deploy couchdb
+  hosts: all
+  roles:
+    - role: deploy-couchdb
 
-# - name: set up couchDB cluster
-#   hosts: leader
-#   roles:
-#     - role: cluster-setup
+- name: set up couchDB cluster
+  hosts: leader
+  roles:
+    - role: cluster-setup
 
-# - name: init docker swarm
-#   hosts: leader
-#   roles:
-#     - role: deploy-swarm
+- name: init docker swarm
+  hosts: leader
+  roles:
+    - role: deploy-swarm
 
-# - name: Add manager
-#   hosts: manager
-#   roles:
-#     - role: add-manager
+- name: Add manager
+  hosts: manager
+  roles:
+    - role: add-manager
 
-# - name: Add worker
-#   hosts: worker
-#   roles:
-#     - role: add-worker
+- name: Add worker
+  hosts: worker
+  roles:
+    - role: add-worker
 
-# - name: Deploy tweets harvester
-#   hosts: all
-#   roles:
-#     - role: deploy-harvester
+- name: Deploy tweets harvester
+  hosts: all
+  roles:
+    - role: deploy-harvester
 
 - name: remove current web image
   hosts: all

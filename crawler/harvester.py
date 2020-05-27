@@ -1,4 +1,8 @@
-#可以挖掘标注澳大利亚地理位置的tweet，不过很慢，几分钟才有一条数据
+# Xinyu Sun 952469
+# Shiyu Dong 870480
+# Jie Luo 1122592
+# Yuxiang Xia 969367
+# Yixuan Tang 959698
 import tweepy
 from key import *
 import json

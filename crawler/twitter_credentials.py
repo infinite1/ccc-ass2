@@ -1,3 +1,9 @@
+# Xinyu Sun 952469
+# Shiyu Dong 870480
+# Jie Luo 1122592
+# Yuxiang Xia 969367
+# Yixuan Tang 959698
+
 #Variables to access Twitter API
 keys = {
     '172.26.131.83': {

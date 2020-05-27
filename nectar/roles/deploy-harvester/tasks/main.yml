@@ -1,4 +1,15 @@
 ---
+# Xinyu Sun 952469
+# Shiyu Dong 870480
+# Jie Luo 1122592
+# Yuxiang Xia 969367
+# Yixuan Tang 959698
+- name: remove container
+  become: yes
+  docker_container:
+    name: tweets_harvester
+    state: absent
+
 - name: Copy file with owner and permissions
   copy:
     src: /Users/xinyusun/Desktop/ccc-ass2/crawler/twitter_credentials.py
@@ -23,6 +34,7 @@
   docker_image:
     state: absent
     name: harvester_image
+    force: yes
 
 - name: Build image
   become: yes

@@ -1,4 +1,9 @@
 ---
+# Xinyu Sun 952469
+# Shiyu Dong 870480
+# Jie Luo 1122592
+# Yuxiang Xia 969367
+# Yixuan Tang 959698
 # image is from https://github.com/dockersamples/docker-swarm-visualizer
 - name: Set docker swarm visualizer
   become: yes
